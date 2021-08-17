@@ -45,17 +45,18 @@ export function Home() {
         }
     ]
 
+    function handleCategorySelect(categoryId: string) {
+        categoryId === category ? setCategory('') : setCategory(categoryId);
+    }
+
     function handleAppointmentDetails() {
         navigation.navigate('AppointmentDetails')
     }
+
     function handleAppointmentCreate() {
         navigation.navigate('AppointmentCreate')
     }
 
-    function handleCategorySelect(categoryId: string) {
-        categoryId === category ? setCategory('') : setCategory(categoryId);
-
-    }
 
     return (
         <Background>
@@ -67,27 +68,26 @@ export function Home() {
                 categorySelected={category}
                 setCategory={handleCategorySelect}
             />
-            <View style={styles.content}>
-                <ListHeader
-                    title="Partidas agendadas"
-                    subtitle="Total 6"
-                />
 
-                <FlatList
-                    data={appointments}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => (
-                        <Appointment
-                            data={item}
-                            onPress={handleAppointmentDetails}
-                        />
-                    )}
-                    ItemSeparatorComponent={() => <ListDivider />}
-                    style={styles.matches}
-                    showsVerticalScrollIndicator={false}
-                />
+            <ListHeader
+                title="Partidas agendadas"
+                subtitle="Total 6"
+            />
 
-            </View>
+            <FlatList
+                data={appointments}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => (
+                    <Appointment
+                        data={item}
+                        onPress={handleAppointmentDetails}
+                    />
+                )}
+                ItemSeparatorComponent={() => <ListDivider />}
+                contentContainerStyle={{ paddingBottom: 25 }}
+                style={styles.matches}
+                showsVerticalScrollIndicator={false}
+            />
         </Background>
     )
 }
