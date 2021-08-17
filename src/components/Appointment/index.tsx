@@ -1,16 +1,16 @@
-import React from 'react'
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { View, Text } from 'react-native';
 
-import { theme } from '../../global/styles/theme'
-import { styles } from './styles'
-import PlayerSvg from '../../assets/player.svg'
-import CalendarSvg from '../../assets/calendar.svg'
+import { theme } from '../../global/styles/theme';
+import { styles } from './styles';
+import PlayerSvg from '../../assets/player.svg';
+import CalendarSvg from '../../assets/calendar.svg';
 
-import { GuildIcon } from '../GuildIcon'
-import { GuildProps } from '../Guild'
-import { categories } from '../../utils/categories'
-import { LinearGradient } from 'expo-linear-gradient'
+import { GuildProps } from '../Guild';
+import { GuildIcon } from '../GuildIcon';
+import { categories } from '../../utils/categories';
 
 
 export type AppointmentProps = {
@@ -22,13 +22,13 @@ export type AppointmentProps = {
 }
 
 type Props = RectButtonProps & {
-    data: AppointmentProps
+    data: AppointmentProps;
 }
 
 export function Appointment({ data, ...rest }: Props) {
     const [category] = categories.filter(item => item.id === data.category);
     const { owner } = data.guild;
-    const { primary, on, secondary50, secondary70 } = theme.colors
+    const { primary, on, secondary50, secondary70 } = theme.colors;
 
     return (
         <RectButton {...rest}>
@@ -37,7 +37,7 @@ export function Appointment({ data, ...rest }: Props) {
                     style={styles.guildIconContainer}
                     colors={[secondary50, secondary70]}
                 >
-                    <GuildIcon />
+                    <GuildIcon guildId={data.guild.id} iconId={data.guild.icon} />
                 </LinearGradient>
 
                 <View style={styles.content}>
@@ -45,6 +45,7 @@ export function Appointment({ data, ...rest }: Props) {
                         <Text style={styles.title}>
                             {data.guild.name}
                         </Text>
+
                         <Text style={styles.category}>
                             {category.title}
                         </Text>
@@ -61,7 +62,11 @@ export function Appointment({ data, ...rest }: Props) {
 
                         <View style={styles.playersInfo}>
                             <PlayerSvg fill={owner ? primary : on} />
-                            <Text style={[styles.player, { color: owner ? primary : on }]}>
+
+                            <Text style={[
+                                styles.player,
+                                { color: owner ? primary : on }
+                            ]}>
                                 {owner ? 'Anfitrião' : 'Visitante'}
                             </Text>
                         </View>
@@ -70,5 +75,5 @@ export function Appointment({ data, ...rest }: Props) {
             </View>
         </RectButton>
     )
-}
 
+}

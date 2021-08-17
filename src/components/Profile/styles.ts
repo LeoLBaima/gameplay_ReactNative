@@ -26,5 +26,23 @@ export const styles = StyleSheet.create({
     message: {
         fontFamily: theme.fonts.text400,
         color: theme.colors.highlight
+    },
+    messageW: {
+        fontFamily: theme.fonts.title700,
+        fontSize: 20,
+        color: theme.colors.heading,
+        textAlign: 'center',
+        marginTop: 20
+    },
+    messageR: {
+        fontFamily: theme.fonts.title700,
+        fontSize: 20,
+        color: theme.colors.primary
+    },
+    buttonholder: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 13
     }
 })
