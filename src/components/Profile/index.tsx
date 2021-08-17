@@ -1,18 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, Alert } from 'react-native'
 import { useAuth } from '../../hooks/auth'
 import { RectButton } from 'react-native-gesture-handler'
-import { LogoutView } from '../LogoutView'
-import { ButtonOut } from '../ButtonOut'
 
 import { Avatar } from '../Avatar'
 import { styles } from './styles'
-import { theme } from '../../global/styles/theme'
 
 
 export function Profile() {
     const { user, signOut } = useAuth()
-
 
     function handleSignOut() {
         Alert.alert('Logout', 'Deseja sair do gameplay?',
@@ -29,7 +25,6 @@ export function Profile() {
 
         )
     }
-
 
     return (
         <View style={styles.container}>
